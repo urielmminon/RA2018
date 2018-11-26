@@ -1,0 +1,19 @@
+model
+{
+#Likelihood
+for (i in 1:n) {
+y[i] ~ dbern(p[i])
+
+#LOGIT
+eta[i]<-beta[1]+beta[2]*x[i,1]+beta[3]*x[i,2]+beta[4]*x[i,3]+beta[5]*x[i,4]+beta[6]*x[i,5]+beta[7]*x[i,6]+beta[8]*x[i,7]+beta[9]*x[i,8]+beta[10]*x[i,9]+beta[11]*x[i,10]+beta[12]*x[i,11]+beta[13]*x[i,12]+beta[14]*x[i,13]+beta[15]*x[i,14]+beta[16]*x[i,15]+beta[17]*x[i,16]+beta[18]*x[i,17]+beta[19]*x[i,18]
+
+p[i]<-exp(eta[i])/(1+exp(eta[i]))
+
+}
+#Priors
+for (j in 1:(m+1)) { beta[j] ~ dnorm(0,0.001) }
+
+for (i in 1:n) {
+yf1[i] ~ dbern(p[i])
+}
+}
